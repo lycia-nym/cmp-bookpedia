@@ -42,7 +42,7 @@ object HttpClientFactory {
                         println(message)
                     }
                 }
-                level = LogLevel
+                level = LogLevel.ALL
             }
             // default configure for every requests
             defaultRequest {
