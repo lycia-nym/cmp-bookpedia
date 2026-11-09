@@ -12,6 +12,10 @@ dependencies {
     implementation(compose.desktop.currentOs)
 
     implementation(libs.compose.uiToolingPreview)
+
+    // Ktor
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.okhttp)
 }
 
 compose.desktop {
