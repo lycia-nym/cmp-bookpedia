@@ -16,14 +16,10 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.PrimaryTabRow
 import androidx.compose.material3.SecondaryTabRow
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Tab
-import androidx.compose.material3.TabIndicatorScope
-import androidx.compose.material3.TabRow
 import androidx.compose.material3.TabRowDefaults
-import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -34,7 +30,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.max
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cmpbookpedia.shared.generated.resources.Res
 import cmpbookpedia.shared.generated.resources.favorites
@@ -42,8 +37,8 @@ import cmpbookpedia.shared.generated.resources.no_favorite_books
 import cmpbookpedia.shared.generated.resources.no_search_results
 import cmpbookpedia.shared.generated.resources.search_result
 import com.example.cmp_bookpedia.book.domain.Book
-import com.example.cmp_bookpedia.book.presentation.components.BookList
-import com.example.cmp_bookpedia.book.presentation.components.BookSearchBar
+import com.example.cmp_bookpedia.book.presentation.book_list.components.BookList
+import com.example.cmp_bookpedia.book.presentation.book_list.components.BookSearchBar
 import com.example.cmp_bookpedia.core.presentation.DarkBlue
 import com.example.cmp_bookpedia.core.presentation.DesertWhite
 import com.example.cmp_bookpedia.core.presentation.SandYellow

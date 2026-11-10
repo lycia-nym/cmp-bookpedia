@@ -1,4 +1,4 @@
-package com.example.cmp_bookpedia.book.presentation.components
+package com.example.cmp_bookpedia.book.presentation.book_list.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
