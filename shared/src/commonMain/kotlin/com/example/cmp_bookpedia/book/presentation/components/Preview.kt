@@ -10,7 +10,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.cmp_bookpedia.book.domain.Book
 import com.example.cmp_bookpedia.book.presentation.book_list.BookListScreen
 import com.example.cmp_bookpedia.book.presentation.book_list.BookListState
-import com.example.cmp_bookpedia.book.presentation.book_list.books
 
 @Preview
 @Composable
@@ -30,6 +29,22 @@ private fun Preview() {
 }
 
 
+private val books = (1..100).map {
+    Book(
+        id = it.toString(),
+        title = "Book $it",
+        imageUrl = "https://test.com",
+        authors = listOf("Philip"),
+        description = "Description $it",
+        language = emptyList(),
+        firstPublishYear = null,
+        averageRating = 4.5512,
+        ratingCount = 6,
+        numPages = 100,
+        numEdition = 3
+
+    )
+}
 
 @Preview
 @Composable
