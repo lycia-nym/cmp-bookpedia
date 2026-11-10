@@ -21,6 +21,9 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.example.cmp_bookpedia.book.presentation.SelectedBookViewModel
+import com.example.cmp_bookpedia.book.presentation.book_detail.BookDetailAction
+import com.example.cmp_bookpedia.book.presentation.book_detail.BookDetailScreenRoot
+import com.example.cmp_bookpedia.book.presentation.book_detail.BookDetailViewModel
 import com.example.cmp_bookpedia.book.presentation.book_list.BookListScreenRoot
 import com.example.cmp_bookpedia.book.presentation.book_list.BookListViewModel
 import org.koin.compose.viewmodel.koinViewModel
@@ -45,7 +48,7 @@ fun App() {
                     val selectedBookViewModel =
                         it.sharedKoinViewModel<SelectedBookViewModel>(navController)
 
-                    LaunchedEffect(true){
+                    LaunchedEffect(true) {
                         selectedBookViewModel.onSelectBook(null)
                     }
 
@@ -59,20 +62,25 @@ fun App() {
                 }
 
                 composable<Route.BookDetail> {
+                    val viewModel = koinViewModel<BookDetailViewModel>()
                     // Shared same instance **
                     val selectedBookViewModel =
                         it.sharedKoinViewModel<SelectedBookViewModel>(navController)
                     // Collect state flow as compose state
                     val selectedBook by selectedBookViewModel.selectedBook.collectAsStateWithLifecycle()
 
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center,
-
-                        ) {
-                        Text("Book Detail Screen!!! $selectedBook" +
-                                "")
+                    LaunchedEffect(selectedBook) {
+                        selectedBook?.let { selectedBook ->
+                            viewModel.onAction(BookDetailAction.OnSelectedBookChange(selectedBook))
+                        }
                     }
+
+                    BookDetailScreenRoot(
+                        viewModel = viewModel,
+                        onBackClick = {
+                            navController.navigateUp()
+                        }
+                    )
                 }
             }
         }

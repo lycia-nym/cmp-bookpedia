@@ -5,6 +5,7 @@ import com.example.cmp_bookpedia.book.data.network.RemoteBookDatasource
 import com.example.cmp_bookpedia.book.data.repository.DefaultBookRepository
 import com.example.cmp_bookpedia.book.domain.BookRepository
 import com.example.cmp_bookpedia.book.presentation.SelectedBookViewModel
+import com.example.cmp_bookpedia.book.presentation.book_detail.BookDetailViewModel
 import com.example.cmp_bookpedia.book.presentation.book_list.BookListViewModel
 import com.example.cmp_bookpedia.core.data.HttpClientFactory
 import org.koin.core.module.Module
@@ -25,5 +26,6 @@ val sharedModule = module {
 
     viewModelOf(::BookListViewModel)
     viewModelOf(::SelectedBookViewModel)
+    viewModelOf(::BookDetailViewModel)
 
 }

@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.asStateFlow
 // ShareViewModel should contain only shared state
 class SelectedBookViewModel : ViewModel() {
     private val _selectedBook = MutableStateFlow<Book?>(null)
-    var selectedBook = _selectedBook.asStateFlow()
+    val selectedBook = _selectedBook.asStateFlow()
 
     fun onSelectBook(book: Book?) {
         _selectedBook.value = book
