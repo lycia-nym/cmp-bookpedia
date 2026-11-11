@@ -56,7 +56,10 @@ fun App() {
                         viewModel = viewModel,
                         onBookClick = { book ->
                             selectedBookViewModel.onSelectBook(book)
-                            navController.navigate(Route.BookDetail(book.id))
+                            println("TITLE: ${book.title}")
+                            navController.navigate(
+                                Route.BookDetail(book.id)
+                            )
                         }
                     )
                 }

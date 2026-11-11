@@ -31,6 +31,10 @@ class BookListViewModel(
     private var cachedBooks = emptyList<Book>()
     private var searchJob: Job? = null
 
+    // Prevent onStart create another instance of observeFavoriteBooks()
+    // after more than 5 seconds by cancel it before create new one
+    private var observeFavoriteJob: Job? = null
+
     private val _state = MutableStateFlow(BookListState())
     val state = _state
         // trigger when call collectStateAsLifecycle()
@@ -38,6 +42,7 @@ class BookListViewModel(
             if (cachedBooks.isEmpty()) {
                 observeSearchQuery()
             }
+            observeFavoriteBooks()
         }
         .stateIn(
             viewModelScope,
@@ -47,9 +52,7 @@ class BookListViewModel(
 
     fun onAction(action: BookListAction) {
         when (action) {
-            is BookListAction.OnBookClick -> {
-
-            }
+            is BookListAction.OnBookClick -> {  }
 
             is BookListAction.OnTabSelected -> {
                 _state.update {
@@ -64,6 +67,20 @@ class BookListViewModel(
             }
         }
 
+    }
+
+    private fun observeFavoriteBooks() {
+        observeFavoriteJob?.cancel()
+        observeFavoriteJob = bookRepository
+            .getFavoriteBooks()
+            .onEach { favoriteBooks ->
+                _state.update {
+                    it.copy(
+                        favoriteBooks = favoriteBooks
+                    )
+                }
+            }
+            .launchIn(viewModelScope)
     }
 
     private fun observeSearchQuery() {
@@ -108,7 +125,6 @@ class BookListViewModel(
                         searchResults = searchResults
                     )
                 }
-//                cachedBooks = searchResults
             }
             .onError { error ->
                 _state.update {

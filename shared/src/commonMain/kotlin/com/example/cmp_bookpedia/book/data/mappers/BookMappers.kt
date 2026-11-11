@@ -1,5 +1,6 @@
 package com.example.cmp_bookpedia.book.data.mappers
 
+import com.example.cmp_bookpedia.book.data.database.BookEntity
 import com.example.cmp_bookpedia.book.data.dto.SearchedBookDto
 import com.example.cmp_bookpedia.book.domain.Book
 
@@ -20,5 +21,37 @@ fun SearchedBookDto.toBook(): Book {
         ratingCount = ratingCount,
         numPages = numPagesMedian,
         numEdition = numEdition ?: 0,
+    )
+}
+
+fun Book.toBookEntity(): BookEntity{
+    return BookEntity(
+        id = id,
+        title = title,
+        description = description,
+        imageUrl = imageUrl,
+        languages = languages,
+        authors = authors,
+        firstPublishYear = firstPublishYear,
+        ratingAverage = averageRating,
+        ratingsCount = ratingCount,
+        numPagesMedian = numPages,
+        numEdition = numEdition
+    )
+}
+
+fun BookEntity.toBook(): Book{
+    return Book(
+        id = id,
+        title = title,
+        description = description,
+        imageUrl = imageUrl,
+        languages = languages,
+        authors = authors,
+        firstPublishYear = firstPublishYear,
+        averageRating = ratingAverage,
+        ratingCount = ratingsCount,
+        numPages = numPagesMedian,
+        numEdition = numEdition
     )
 }
