@@ -82,7 +82,7 @@ class BookListViewModel(
                         }
                     }
 
-                    query.length >= 2 -> {
+                    query.length >= 3 -> {
                         // cancel previous search (if exist)
                         searchJob?.cancel()
                         searchJob = searchBooks(query)
@@ -108,6 +108,7 @@ class BookListViewModel(
                         searchResults = searchResults
                     )
                 }
+//                cachedBooks = searchResults
             }
             .onError { error ->
                 _state.update {
