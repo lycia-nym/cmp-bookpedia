@@ -2,6 +2,7 @@ package com.example.cmp_bookpedia.book.data.database
 
 import androidx.room3.ColumnTypeConverter
 import androidx.room3.ColumnTypeConverters
+import androidx.room3.ConstructedBy
 import androidx.room3.Database
 import androidx.room3.RoomDatabase
 
@@ -13,6 +14,7 @@ import androidx.room3.RoomDatabase
 @ColumnTypeConverters(
     StringListTypeConverter::class
 )
+@ConstructedBy(BookDatabaseConstructor::class)
 abstract class FavoriteBookDatabase: RoomDatabase() {
     abstract val favoriteBookDao: FavoriteBookDao
 
