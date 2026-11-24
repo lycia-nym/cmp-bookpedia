@@ -1,35 +1,44 @@
-This is a Kotlin Multiplatform project targeting Android, iOS, Desktop (JVM).
+# BookPedia
 
-* [/iosApp](./iosApp/iosApp) contains an iOS application. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+A cross-platform book discovery application built with **Kotlin Multiplatform** and **Compose Multiplatform**.
 
-* [/shared](./shared/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./shared/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./shared/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./shared/src/jvmMain/kotlin)
-    folder is the appropriate location.
+BookPedia is a multiplatform project designed to provide a shared application experience across Android, iOS, and Desktop using a common Kotlin codebase.
 
-### Running the apps
+## Features
 
-Use the run configurations provided by the run widget in your IDE's toolbar. You can also use these commands and options:
+- Cross-platform application targeting Android, iOS, and Desktop
+- Shared UI and application logic using Compose Multiplatform
+- HTTP networking using Ktor Client
+- Dependency injection using Koin
+- Local data persistence using Room
+- Image loading using Coil
+- Screen navigation using Compose Navigation
 
-- Android app: `./gradlew :androidApp:assembleDebug`
-- Desktop app:
-  - Hot reload: `./gradlew :desktopApp:hotRun --auto`
-  - Standard run: `./gradlew :desktopApp:run`
-- iOS app: open the [/iosApp](./iosApp) directory in Xcode and run it from there.
+## Tech Stack
 
-### Running tests
+- **Kotlin**
+- **Kotlin Multiplatform (KMP)**
+- **Compose Multiplatform (CMP)**
+- **Material 3**
+- **Ktor Client** — networking and API requests
+- **Koin** — dependency injection
+- **Kotlin Serialization** — JSON serialization
+- **Coil** — image loading
+- **Room** — local database
+- **Coroutines** — asynchronous operations
+- **Compose Navigation** — navigation between screens
 
-Use the run button in your IDE's editor gutter, or run tests using Gradle tasks:
+## Architecture
 
-- Android tests: `./gradlew :shared:testAndroidHostTest`
-- Desktop tests: `./gradlew :shared:jvmTest`
-- iOS tests: `./gradlew :shared:iosSimulatorArm64Test`
+The project separates platform-specific implementations from shared application code:
 
----
+- **Shared** — common application logic, UI, networking, and data management
+- **Android** — Android-specific implementations and platform configuration
+- **iOS** — iOS application entry point and platform-specific integration
+- **Desktop** — JVM-specific implementations and desktop application configuration
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+The shared module uses dependency injection to manage application dependencies and platform-specific implementations to support networking across different targets.
+
+## Purpose
+
+This project was created while following **Philipp Lackner's BookPedia Kotlin Multiplatform course** as hands-on practice with modern Kotlin Multiplatform development, Compose Multiplatform, and building cross-platform applications using a shared Kotlin codebase.
